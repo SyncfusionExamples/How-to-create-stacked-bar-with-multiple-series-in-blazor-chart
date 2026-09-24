@@ -1,76 +1,74 @@
-# How-to-create-stacked-bar-with-multiple-series-in-blazor-chart
+# How to Create Stacked bar with Multiple Series in Blazor Chart
 
-This article explains how to create stacking bar with multiple series in Blazor Chart Component.
+## Overview
 
-**Creating multiple stacking series in Blazor chart**
+This sample demonstrates how to create multiple stacked bar groups using Syncfusion [Blazor Charts](https://www.syncfusion.com/blazor-components/blazor-charts). The implementation renders four stacking bar series and separates them into two independent stack groups by using the `StackingGroup` property.
 
-[Blazor charts](https://www.syncfusion.com/blazor-components/blazor-charts) provides a support to create stacked bar with multiple series. This can be achieved by using [StackingGroup](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartSeries.html#Syncfusion_Blazor_Charts_ChartSeries_StackingGroup) property.
+By default, stacked series are combined into a single stack. This sample shows how multiple stacking groups can be displayed side by side for the same category, making it easier to compare related datasets while preserving individual stack totals. The example uses a categorical X-axis and binds data from an in-memory collection to multiple chart series.
 
-For example, consider four stacking column series grouped into two; Group1 and Group2 by using the [StackingGroup](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartSeries.html#Syncfusion_Blazor_Charts_ChartSeries_StackingGroup) property. Then, chart is rendered in two stacking columns at a point: one for Group1 and the other for Group2.
+## Key Features
 
-The following code example illustrates this.
+- Uses the `SfChart` component to render chart visualizations.
+- Configures the primary axis through `ChartPrimaryXAxis`.
+- Sets `ValueType="Syncfusion.Blazor.Charts.ValueType.Category"` to display category-based data.
+- Defines multiple chart series using `ChartSeriesCollection`.
+- Uses `Type="ChartSeriesType.StackingBar"` to render stacked bar charts.
+- Binds category values using the `XName` property.
+- Binds numerical values using the `YName` property.
+- Assigns data through the `DataSource` property.
+- Creates independent stacking groups through the `StackingGroup` property.
+- Demonstrates two separate stack groups: `Group1` and `Group2`.
+- Uses a strongly typed `ChartData` class containing:
+  - `X`
+  - `YValue`
+  - `YValue1`
+  - `YValue2`
+  - `YValue3`
+- Populates the chart using an in-memory `List<ChartData>` data source.
 
-**Index.razor**
+## Prerequisites
 
-```cshtml
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/)
+- [.NET SDK](https://dotnet.microsoft.com/en-us/download/dotnet) compatible with the project's target framework
 
-@using Syncfusion.Blazor.Charts
+## How to Run the Project
 
-<SfChart>
+**Visual Studio 2022**
 
-    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+1. Clone or download this repository.
+2. Open the following project file:
 
-    <ChartSeriesCollection>
-        <ChartSeries DataSource="@DataSource" StackingGroup="Group1" XName="X" YName="YValue" Type="ChartSeriesType.StackingBar">
-        </ChartSeries>
-        <ChartSeries DataSource="@DataSource" StackingGroup="Group1" XName="X" YName="YValue1" Type="ChartSeriesType.StackingBar">
-        </ChartSeries>
-        <ChartSeries DataSource="@DataSource" StackingGroup="Group2" XName="X" YName="YValue2" Type="ChartSeriesType.StackingBar">
-        </ChartSeries>
-        <ChartSeries DataSource="@DataSource" StackingGroup="Group2" XName="X" YName="YValue3" Type="ChartSeriesType.StackingBar">
-        </ChartSeries>
-    </ChartSeriesCollection>
-    
-</SfChart>
+   `MultipleStackingSeries/MultipleStackingSeries.csproj`
 
-@code {
+3. Restore NuGet packages when prompted.
+4. Build the project.
+5. Run the application using **Ctrl+F5**.
 
-    public class ChartData
-    {
-        public string X { get; set; }
-        public double YValue { get; set; }
-        public double YValue1 { get; set; }
-        public double YValue2 { get; set; }
-        public double YValue3 { get; set; }
-    }
+**Visual Studio Code**
 
-    public List<ChartData> DataSource = new List<ChartData>
-    {
-        new ChartData { X= "USA", YValue= 46, YValue1=56, YValue2=26,YValue3=50},
-        new ChartData { X= "GBR", YValue= 27, YValue1=17, YValue2=37,YValue3=20},
-        new ChartData { X= "CHN", YValue= 26, YValue1=36, YValue2=56,YValue3=26},
-        new ChartData { X= "UK", YValue= 56,  YValue1=16, YValue2=36,YValue3=16},
-        new ChartData { X= "AUS", YValue= 12, YValue1=46, YValue2=26,YValue3=20},
-        new ChartData { X= "IND", YValue= 26, YValue1=16, YValue2=76,YValue3=25},
-        new ChartData { X= "DEN", YValue= 26, YValue1=12, YValue2=42,YValue3=20},
-        new ChartData { X= "MEX", YValue= 34, YValue1=32, YValue2=82,YValue3=35},
-    };
-}
+1. Clone or download this repository.
+2. Open the repository folder in Visual Studio Code.
+3. Open the integrated terminal.
+4. Navigate to the project directory.
 
+```bash
+cd MultipleStackingSeries
+dotnet restore
+dotnet run
 ```
 
-The following screenshot illustrates the output of the above code.
+5. Open the local URL displayed in the terminal after the application starts.
 
-**Output:**
+## Project Structure
 
-![](/multiple-stacked-bar.png)
+`Pages/Index.razor` —- Contains the `SfChart` implementation, stacked bar series configuration, `StackingGroup` settings, data model, and sample data source.
 
-**Conclusion**
+## Support and Feedback
 
-I hope you enjoyed learning how to create stacked bar with multiple series in Blazor Chart Component.
+- For general product questions, visit the [Syncfusion Community Forum](https://www.syncfusion.com/forums) or [Syncfusion Support](https://www.syncfusion.com/support).
+- To report an issue specific to this sample, open a GitHub issue in this repository.
+- Refer to the official Syncfusion documentation for Chart getting started and stacked chart configuration: https://help.syncfusion.com/chart-sdk/blazor/charts/getting-started
 
-You can refer to our [Blazor Chart feature tour](https://www.syncfusion.com/blazor-components/blazor-charts) page to know about its other groundbreaking feature representations and [documentation](https://blazor.syncfusion.com/documentation/chart/getting-started), and how to quickly get started for configuration specifications. You can also explore our [Blazor Chart example](https://blazor.syncfusion.com/demos/chart/line?theme=bootstrap5) to understand how to create and manipulate data.
+## License
 
-For current customers, you can check out our components from the [License and Downloads](https://www.syncfusion.com/sales/teamlicense) page. If you are new to Syncfusion, you can try our 30-day [free trial](https://www.syncfusion.com/downloads/blazor) to check out our other controls.
-
-If you have any queries or require clarifications, please let us know in the comments section below. You can also contact us through our [support forums](https://www.syncfusion.com/forums), [support portal](https://support.syncfusion.com/create), or [feedback portal](https://www.syncfusion.com/feedback/blazor-components?control=charts). We are always happy to assist you!
+This is a Syncfusion sample project provided to demonstrate product usage. Review the [Syncfusion license terms](https://www.syncfusion.com/sales/pricing?category=ui-components) before using Syncfusion components in your own applications.
